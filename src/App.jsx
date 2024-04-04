@@ -7,12 +7,13 @@ import SearchSection from "@/components/layout/search-section";
 import TopEmployerSection from "@/components/layout/top-employer-section";
 import ArticleSection from "@/components/layout/article-section";
 import TopSearchSection from "./components/layout/top-search-section";
+import SearchSectionQuery from "./components/layout/search-section-query";
 function App() {
     return (
         <>
             <Header />
 
-            <SearchSection />
+            <SearchSectionQuery />
             <TopSearchSection />
             <ArticleSection />
 

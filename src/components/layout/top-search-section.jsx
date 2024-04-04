@@ -5,23 +5,55 @@ import JobCard from "../job-card";
 import JobCardDemo from "../job-card-demo";
 import { EMPLOYERS } from "@/lib/constants";
 import { JOBS } from "@/lib/constants";
+import axios from "axios";
+import { useState, useEffect } from "react";
+const JOBSLIST = () => {
+    const [JOBDEMO, setJOBDEMO] = useState([]);
+    useEffect(() => {
+        fetch('https://demo-restful-api-itviec.vercel.app/api/jobs')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setJOBDEMO(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
+};
 const TopSearchSection = () => {
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        fetch('https://demo-restful-api-itviec.vercel.app/api/jobs')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setPosts(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
+    const handleClick = () => {
+        e.preventDefault();
+        console.log('You clicked submit.');
+    }
     return (
         <Container className="py-16 pt-6">
             <div class="flex flex-col flex-row">
-                <h1 class="font-bold text-xl text-black px-10" data-jobs-filter-target="header">
-                    {JOBS.length} IT jobs in Vietnam
+                <h1 class="font-bold text-2xl text-black px-4" data-jobs-filter-target="header">
+                    {posts.length} IT jobs in Vietnam
                 </h1>
 
 
 
                 <div className="grid md:grid-cols-12">
                     <div className="md:col-span-5">
-                    {JOBS.map((job,index) => (
-                            <JobCardDemo key={index} job={job} />
+                        {posts.map((job, index) => (
+                            <JobCardDemo key={index} job={job} onClick={handleClick} />
                         ))}
                     </div>
-                    <div className="md:col-span-7">
+                    <div className="md:col-span-7 bg-white">
                         <div class="preview-job-header py-6 px-6 pb-2">
                             <div class="flex items-center gap-3">
                                 <a href="/companies/brickmate-group-vietnam" target="_blank" class="bg-white logo-employer-preview">
@@ -45,7 +77,7 @@ const TopSearchSection = () => {
                                     <a href="/sign_in" class="border-0 bg-transparent flex items-center p-0 ms-3">
                                         <div class="heart-icon">
                                             <svg class="feather-icon w-8 h-8 text-it-red">
-                                                <use xlink: href="https://itviec.com/assets/feather-icons-sprite-520cd3770a1002f7c87bd1ba253464228ad112abb4c34d81c8cda9f937487a49.svg#heart"></use>
+                                                <use xlink:href="https://itviec.com/assets/feather-icons-sprite-520cd3770a1002f7c87bd1ba253464228ad112abb4c34d81c8cda9f937487a49.svg#heart"></use>
                                             </svg>
                                         </div>
                                     </a>
@@ -56,26 +88,30 @@ const TopSearchSection = () => {
                         <section class="preview-job-overview">
                             <div class="grid gap-2">
                                 <div class="flex items-center">
-                                    <svg class="feather-icon w-4 h-4 mr-1">
-                                        <use xlink: href="https://itviec.com/assets/feather-icons-sprite-520cd3770a1002f7c87bd1ba253464228ad112abb4c34d81c8cda9f937487a49.svg#map-pin"></use>
+                                    <svg fill="none" viewBox="0 0 24 25" class="w-4 h-4">
+                                        <g clip-path="url(#clip0_947_6633)">
+                                            <path d="M19 14.625C19 13.6967 18.6312 12.8065 17.9749 12.1501C17.3185 11.4937 16.4283 11.125 15.5 11.125H8.5C7.57174 11.125 6.6815 11.4937 6.02513 12.1501C5.36875 12.8065 5 13.6967 5 14.625" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M12 8.5C13.933 8.5 15.5 6.933 15.5 5C15.5 3.067 13.933 1.5 12 1.5C10.067 1.5 8.5 3.067 8.5 5C8.5 6.933 10.067 8.5 12 8.5Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M11.5 18.9375H12.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M4.56116 22.7812L2.90039 15.0938H21.0996L19.3696 22.7812" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <line stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" x1="1" x2="23" y1="23.5" y2="23.5"></line>
+                                        </g>
                                     </svg>
                                     <span class="text-dark-grey text-sm ml-2">19 Cao Thang, Ward 02, District 3, Ho Chi Minh</span>
-                                    <a target="_blank" href="https://www.google.com/maps?q=19+Cao+Thang%2C+Ward+02%2C+District+3%2C+Ho+Chi+Minh" class="ml-1">
-                                        <svg class="feather-icon w-4 h-4">
-                                            <use xlink: href="https://itviec.com/assets/feather-icons-sprite-520cd3770a1002f7c87bd1ba253464228ad112abb4c34d81c8cda9f937487a49.svg#external-link"></use>
-                                        </svg>
-                                    </a>
+
                                 </div>
                                 <div class="flex items-center">
-                                    <svg class="feather-icon w-4 h-4 mr-1">
-                                        <use xlink: href="https://itviec.com/assets/feather-icons-sprite-520cd3770a1002f7c87bd1ba253464228ad112abb4c34d81c8cda9f937487a49.svg#map-pin"></use>
+                                    <svg fill="none" viewBox="0 0 24 25" class="w-4 h-4">
+                                        <g clip-path="url(#clip0_947_6633)">
+                                            <path d="M19 14.625C19 13.6967 18.6312 12.8065 17.9749 12.1501C17.3185 11.4937 16.4283 11.125 15.5 11.125H8.5C7.57174 11.125 6.6815 11.4937 6.02513 12.1501C5.36875 12.8065 5 13.6967 5 14.625" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M12 8.5C13.933 8.5 15.5 6.933 15.5 5C15.5 3.067 13.933 1.5 12 1.5C10.067 1.5 8.5 3.067 8.5 5C8.5 6.933 10.067 8.5 12 8.5Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M11.5 18.9375H12.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M4.56116 22.7812L2.90039 15.0938H21.0996L19.3696 22.7812" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <line stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" x1="1" x2="23" y1="23.5" y2="23.5"></line>
+                                        </g>
                                     </svg>
                                     <span class="text-dark-grey text-sm ml-2">29A Nguyen Dinh Chieu, Dakao, District 1, Ho Chi Minh</span>
-                                    <a target="_blank" href="https://www.google.com/maps?q=29A+Nguyen+Dinh+Chieu%2C+Dakao%2C+District+1%2C+Ho+Chi+Minh" class="ml-1">
-                                        <svg class="feather-icon w-4 h-4">
-                                            <use xlink: href="https://itviec.com/assets/feather-icons-sprite-520cd3770a1002f7c87bd1ba253464228ad112abb4c34d81c8cda9f937487a49.svg#external-link"></use>
-                                        </svg>
-                                    </a>
+
                                 </div>
                                 <div class="flex items-center">
                                     <svg fill="none" viewBox="0 0 24 25" class="w-4 h-4">
@@ -90,25 +126,31 @@ const TopSearchSection = () => {
                                     <span class="text-dark-grey text-sm ml-2">At office</span>
                                 </div>
                                 <div class="flex items-center gap-3 text-dark-grey">
-                                    <svg class="feather-icon w-4 h-4 align-middle">
-                                        <use xlink: href="https://itviec.com/assets/feather-icons-sprite-520cd3770a1002f7c87bd1ba253464228ad112abb4c34d81c8cda9f937487a49.svg#clock"></use>
+                                    <svg fill="none" viewBox="0 0 24 25" class="w-4 h-4">
+                                        <g clip-path="url(#clip0_947_6633)">
+                                            <path d="M19 14.625C19 13.6967 18.6312 12.8065 17.9749 12.1501C17.3185 11.4937 16.4283 11.125 15.5 11.125H8.5C7.57174 11.125 6.6815 11.4937 6.02513 12.1501C5.36875 12.8065 5 13.6967 5 14.625" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M12 8.5C13.933 8.5 15.5 6.933 15.5 5C15.5 3.067 13.933 1.5 12 1.5C10.067 1.5 8.5 3.067 8.5 5C8.5 6.933 10.067 8.5 12 8.5Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M11.5 18.9375H12.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <path d="M4.56116 22.7812L2.90039 15.0938H21.0996L19.3696 22.7812" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                                            <line stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" x1="1" x2="23" y1="23.5" y2="23.5"></line>
+                                        </g>
                                     </svg>
-                                    <span class="text-rich-grey text-sm ml-2">8 hours ago</span>
+                                    <span class="text-rich-grey text-sm ">8 hours ago</span>
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <span class="text-rich-grey text-sm">Skills:</span>
-                                    <div class="flex gap-1">
-                                        <a href="/it-jobs/javascript?click_source=Skill+tag" class="text-reset" data-controller="utm-tracking">
+                                    <div class="flex gap-1 text-sm font-normal text-black rounded-full ml-2 bg-grey">
+                                        <a href="/it-jobs/javascript?click_source=Skill+tag" class="text-reset text-sm font-normal text-black rounded-full ml-2" data-controller="utm-tracking">
                                             <div class="bg-light-gray py-1 px-2 text-sm rounded-full">
                                                 JavaScript
                                             </div>
                                         </a>
-                                        <a href="/it-jobs/reactjs?click_source=Skill+tag" class="text-reset" data-controller="utm-tracking">
+                                        <a href="/it-jobs/reactjs?click_source=Skill+tag" class="text-reset text-sm font-normal text-black rounded-full ml-2" data-controller="utm-tracking">
                                             <div class="bg-light-gray py-1 px-2 text-sm rounded-full">
                                                 ReactJS
                                             </div>
                                         </a>
-                                        <a href="/it-jobs/typescript?click_source=Skill+tag" class="text-reset" data-controller="utm-tracking">
+                                        <a href="/it-jobs/typescript?click_source=Skill+tag" class="text-reset text-sm font-normal text-black rounded-full ml-2" data-controller="utm-tracking">
                                             <div class="bg-light-gray py-1 px-2 text-sm rounded-full">
                                                 TypeScript
                                             </div>
@@ -207,7 +249,7 @@ const TopSearchSection = () => {
                                         </symbol>
                                     </svg>
                                     <div class="inline-block">
-    
+
                                         <span class="align-middle">South Korea</span>
                                     </div>
                                 </small>

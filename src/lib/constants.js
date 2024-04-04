@@ -1,3 +1,6 @@
+
+import { useState,useEffect } from "react";
+
 export const EMPLOYERS = [
     {
         name: "Mcredit - Công ty Tài chính TNHH MB Shinsei",

@@ -19,7 +19,7 @@ const JobCardDemo = ({ job }) => {
     const daysAgo = differenceInDays(currentDate, targetDate);
     const logo = "/company/logo-nab.webp";
     return (
-        <Card className="bg-white p-2 m-2 flex flex-col rounded-lg relative">
+        <Card className="bg-white p-2 m-2 flex flex-col rounded-lg relative" >
             <CardContent>
                 <div class="ipy-2">
                     <div class="flex items-center justify-between relative">
@@ -44,7 +44,20 @@ const JobCardDemo = ({ job }) => {
                     <span className="ml-2 text-sm">
                         <a target="_blank" data-controller="utm-tracking" className="text-gray-600" href="/companies/hsc?lab_feature=preview_jd_page">{company.name}</a>
                     </span>
+
                 </div>
+                <div class="pt-2 font-semibold">
+                    <div class="flex items-center text-green-600">
+                        <svg fill="none" height="20" stroke="currentColor" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.0044 6V18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            <path d="M14.9287 7.90332H10.5395C9.99625 7.90332 9.47527 8.11912 9.09114 8.50325C8.70701 8.88738 8.49121 9.40836 8.49121 9.9516C8.49121 10.4948 8.70701 11.0158 9.09114 11.4C9.47527 11.7841 9.99625 11.9999 10.5395 11.9999H13.4656C14.0088 11.9999 14.5298 12.2157 14.914 12.5998C15.2981 12.9839 15.5139 13.5049 15.5139 14.0482C15.5139 14.5914 15.2981 15.1124 14.914 15.4965C14.5298 15.8806 14.0088 16.0964 13.4656 16.0964H8.49121" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"></path>
+                            <circle cx="12.0002" cy="12.0002" r="9.3" stroke-width="2" stroke="currentColor"></circle>
+                        </svg>
+                        <span class="ml-2">{salary}</span>
+                    </div>
+                </div>
+
+
             </CardContent>
 
             <CardContent>
@@ -67,9 +80,7 @@ const JobCardDemo = ({ job }) => {
                         {working_model}
                     </span>
                 </div>
-            </CardContent>
 
-            <CardContent>
                 <div className="flex items-center text-black">
                     <svg fill="none" height="16" viewBox="0 0 24 25" width="16" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_947_6633)">
@@ -90,6 +101,7 @@ const JobCardDemo = ({ job }) => {
                     </span>
                 </div>
 
+
             </CardContent>
 
             <CardContent>
@@ -101,17 +113,18 @@ const JobCardDemo = ({ job }) => {
                             <Badge
                                 key={index}
                                 variant="secondary"
-                                className="text-sm font-normal text-black rounded-full"
+                                className="text-sm font-normal text-black rounded-full ml-2"
                             >
                                 {skill}
                             </Badge>
                         ))}
                     </div>
                     {/* <Badge variant="secondary" className="text-sm font-normal">
-                        Java
-                    </Badge> */}
+    Java
+</Badge> */}
                 </div>
             </CardContent>
+
         </Card>
     );
 };
